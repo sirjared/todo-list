@@ -223,23 +223,6 @@ function CalendarSidebar({ events, onDrop, onEventUpdate, onEventRemove, onGoogl
           <div className="event-area" />
         </div>
       );
-
-      // Add current time line
-      if (isCurrentHour) {
-        const currentMinute = new Date().getMinutes();
-        const slotHeight = 27; // Match the CSS height
-        const position = (hour * slotHeight) + ((currentMinute / 60) * slotHeight);
-        
-        slots.push(
-          <div
-            key="current-time-line"
-            className="current-time-line"
-            style={{ 
-              top: `${position}px`,
-            }}
-          />
-        );
-      }
     }
     return slots;
   };
