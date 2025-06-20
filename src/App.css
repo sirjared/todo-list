@@ -56,14 +56,20 @@ body {
   width: 250px;
   background-color: var(--surface-color);
   border-right: 1px solid var(--border-color);
-  padding: 1.5rem 1rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+  height: 100vh;
+  position: sticky;
+  top: 0;
 }
 
 .sidebar-header {
   padding: 0 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
 }
 
 .sidebar-title {
@@ -75,15 +81,16 @@ body {
 .nav-section {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .nav-section-title {
-  font-size: 0.8rem;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 500;
   color: var(--text-secondary);
   padding: 0 0.5rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
 }
 
 .nav-list {
@@ -94,7 +101,6 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.5rem;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color var(--transition-speed);
@@ -119,10 +125,11 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.5rem;
+  padding: 0.75rem 0.5rem;
   width: 100%;
   text-decoration: none;
   color: inherit;
+  font-size: 0.9rem;
 }
 
 .nav-item.active a {
@@ -1728,4 +1735,39 @@ button svg {
   height: 100px;
   color: var(--text-secondary);
   font-style: italic;
+}
+
+/* Logout section */
+.logout-section {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.logout-item {
+  color: #e74c3c !important;
+  transition: background-color var(--transition-speed);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.logout-item:hover {
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+.nav-item.logout-item a, 
+.nav-item.logout-item {
+  color: #e74c3c;
+}
+
+.logout-item svg {
+  color: #e74c3c;
+  width: var(--icon-size-medium);
+  height: var(--icon-size-medium);
+  margin-right: 4px;
 }
