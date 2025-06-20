@@ -44,7 +44,6 @@ function Sidebar({ activePage, onNavigate }) {
       </div>
 
       <div className="nav-section">
-        <h2 className="nav-section-title">WEEK</h2>
         <ul className="nav-list">
           <li 
             className={`nav-item ${activePage === 'weekly-review' ? 'active' : ''}`}
