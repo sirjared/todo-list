@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { format, parseISO, startOfToday, isAfter, isBefore, addHours, addDays, isToday, isTomorrow, isPast, startOfDay } from 'date-fns'
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import './App.css'
 import TodoItem from './components/TodoItem'
 import CalendarSidebar from './components/CalendarSidebar'
@@ -9,15 +10,29 @@ import Sidebar from './components/Sidebar'
 import DailyTaskList from './components/DailyTaskList'
 import WeeklyReview from './components/WeeklyReview'
 
-function App() {
+function App({ initialPage = 'planner' }) {
   const [todos, setTodos] = useState([])
   const [events, setEvents] = useState([])
   const [notifications, setNotifications] = useState([])
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false)
   const [selectedDate, setSelectedDate] = useState(null)
   const [dateOffset, setDateOffset] = useState(0)
-  const [activePage, setActivePage] = useState('planner')
+  const [activePage, setActivePage] = useState(initialPage)
   const scrollContainerRef = useRef(null)
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  // Update activePage when route changes
+  useEffect(() => {
+    const path = location.pathname;
+    if (path === '/app') {
+      setActivePage('planner');
+    } else if (path === '/daily-tasks') {
+      setActivePage('daily-tasks');
+    } else if (path === '/weekly-review') {
+      setActivePage('weekly-review');
+    }
+  }, [location]);
 
   const visibleDates = [
     addDays(startOfToday(), dateOffset),
@@ -28,6 +43,11 @@ function App() {
   // Handle navigation between pages
   const handleNavigate = (page) => {
     setActivePage(page);
+    if (page === 'planner') {
+      navigate('/app');
+    } else {
+      navigate(`/${page}`);
+    }
   };
 
   const handleScrollLeft = () => {
